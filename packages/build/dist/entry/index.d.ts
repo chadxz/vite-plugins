@@ -1,0 +1,20 @@
+type EntryContentHookOptions = {
+    staticPaths: string[];
+};
+type EntryContentHook = (appName: string, options?: EntryContentHookOptions) => string | Promise<string>;
+type GetEntryContentOptions = {
+    entry: string[];
+    entryContentBeforeHooks?: EntryContentHook[];
+    entryContentAfterHooks?: EntryContentHook[];
+    /**
+     * Explicitly specify the default export for the app. Make sure your export
+     * incorporates the app passed as the `appName` argument.
+     *
+     * @default `export default ${appName}`
+     */
+    entryContentDefaultExportHook?: EntryContentHook;
+    staticPaths?: string[];
+};
+declare const getEntryContent: (options: GetEntryContentOptions) => Promise<string>;
+
+export { EntryContentHook, EntryContentHookOptions, GetEntryContentOptions, getEntryContent };
